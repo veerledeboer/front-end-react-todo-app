@@ -1,0 +1,33 @@
+
+.profile-picture-wrapper{
+    max-width: 500px;
+}
+.profile-picture-wrapper img{
+    width: 100%;
+}
+
+.bio-info-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    border: 1px solid black;
+}
+
+.bio-info-section h2{
+    font-size: 1.3em;
+}
+
+.bio-info-section{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    text-wrap: balance;
+    padding: 2rem;
+    border: 1px solid red;
+
+}
+

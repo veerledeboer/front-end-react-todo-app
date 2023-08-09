@@ -1,0 +1,35 @@
+/*NAVIGATION*/
+
+.nav-bar  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 1em;
+    /*background-color: var(--clr-primary-white);*/
+    padding: 2em;
+    border-radius: 50px 50px 0 0 ;
+    margin-top: 2rem;
+    font-size: 1.2em;
+}
+
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+}
+
+nav a,
+nav a:visited {
+    text-decoration: none;
+    color: #717744;
+}
+
+.active-link{
+    border-bottom: 1px solid #373D20;
+}
+
+.default-link{
+    border-bottom: 1px solid transparent;
+}

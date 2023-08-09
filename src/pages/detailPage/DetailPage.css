@@ -1,0 +1,37 @@
+
+
+/* The devil is in the details */
+.detail-page{
+    border: 1px solid var(--clr-primary-light-green);
+    border-radius: 30px;
+}
+
+.detail-page-input-field input:placeholder-shown{
+    background-color: var(--clr-primary-white);
+    color: var(--clr-primary-dark-green);
+    border: 1px solid var(--clr-primary-light-green);
+    padding: 1em;
+    font-family: var(--ff-primary-text);
+    width: 250px;
+}
+
+.detail-page-input-field{
+    background-color: var(--clr-primary-white);
+    color: var(--clr-primary-dark-green);
+    border: 1px solid var(--clr-primary-light-green);
+    outline: var(--clr-primary-light-green);
+    font-family: var(--ff-primary-text);
+    width: 250px;
+    padding: 1em;
+    margin: 2em;
+}
+
+.detail-page-input-field:hover{
+    cursor: inherit;
+}
+
+.single-detail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

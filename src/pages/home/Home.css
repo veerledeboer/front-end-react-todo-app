@@ -1,0 +1,145 @@
+
+.search-tasks-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.search-field {
+    background-color: var(--clr-primary-brown);
+    border: 1px solid var(--clr-primary-brown);
+    color: var(--clr-primary-light-green);
+    width: 100%;
+    padding: 10px 35px 10px 15px;
+    border-radius: 100px;
+    outline: none;
+}
+
+.search-field:placeholder-shown {
+    background-color: var(--clr-primary-brown);
+    border: 1px solid var(--clr-primary-brown);
+    color: var(--clr-primary-light-green);
+}
+
+.search-button img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+
+.search-button {
+    background: transparent;
+    border: none;
+    outline: none;
+    margin-left: -40px;
+}
+
+
+
+/*--------------------- Add task section -----------------*/
+.add-task-section {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    border: 1px solid var(--clr-primary-light-green);
+    border-radius: 50px;
+}
+
+.task-input-field:placeholder-shown {
+    background-color: var(--clr-primary-white);
+    color: var(--clr-primary-dark-green);
+    border: 1px solid transparent;
+    border-bottom: 1px solid var(--clr-primary-light-green);
+    padding: 1em;
+    font-family: var(--ff-primary-text);
+    width: 300px;
+    font-size: 1em;
+}
+
+.task-input-field {
+    background-color: var(--clr-primary-white);
+    color: var(--clr-primary-dark-green);
+    border: 1px solid transparent;
+    border-bottom: 1px solid var(--clr-primary-light-green);
+    outline: var(--clr-primary-light-green);
+    font-family: var(--ff-primary-text);
+    padding: 1em;
+    font-size: 1em;
+}
+
+.add-task-section-text-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.task-input-field-description:placeholder-shown{
+    font-family: var(--ff-primary-text);
+    background-color: var(--clr-primary-white);
+    color: var(--clr-primary-dark-green);
+    border: 1px solid transparent;
+    border-bottom: 1px solid var(--clr-primary-light-green);
+    padding: 1em;
+}
+
+input::placeholder, textarea::placeholder{
+    color: var(--clr-primary-dark-green);
+}
+
+#searchBar::placeholder{
+    color: var(--clr-primary-light-green);
+}
+
+.task-input-field-description{
+    background-color: var(--clr-primary-white);
+    color: var(--clr-primary-dark-green);
+    border: 1px solid transparent;
+    outline: var(--clr-primary-light-green);
+    font-family: var(--ff-primary-text);
+    border-bottom: 1px solid var(--clr-primary-light-green);
+    width: 100%;
+    height: 100px;
+    padding: 1em;
+    resize: none;
+}
+
+.add-task-section-button-and-prio-wrapper{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+/*// remove textarea expand icon */
+
+
+.filter-section nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 1rem;
+}
+
+/* input field*/
+
+/* --------------------checkbox --------------------*/
+
+
+/* select priority */
+
+select {
+    /*box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);*/
+    font-size: 1rem;
+    padding: 0.5em 1.5em;
+    background-color: var(--clr-primary-light-green);
+    color: var(--clr-primary-dark-green);
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: var(--ff-primary-buttons);
+}
+
+.custom-select {
+    position: relative;
+}

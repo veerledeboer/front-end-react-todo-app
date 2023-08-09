@@ -1,0 +1,95 @@
+/*--------------------------COLORS--------------------------*/
+:root {
+    --clr-primary-white: #EFF1ED;
+    --clr-primary-dark-green: #373D20;
+    --clr-primary-medium-green: #717744;
+    --clr-primary-light-green: #BCBD8B;
+    --clr-primary-brown: #766153;
+    --clr-secondary-dark-blue: #152529;
+    --clr-secondary-medium-blue: #30565F;
+    --clr-secondary-light-blue: #77AEBB;
+    --clr-secondary-orange: #E57A44;
+    --clr-secondary-dark-pink: #EB9486;
+    --clr-secondary-light-pink: #D5B3AF;
+    /* FONTS */
+    --ff-primary-header: 'Poppins', sans-serif;
+    --ff-primary-buttons: 'Montserrat', sans-serif;
+    --ff-primary-text: 'Montserrat', sans-serif;
+}
+
+/*--------------------------REUSABLES--------------------------*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.inner-container {
+    flex-basis: 1000px;
+    flex-grow: 0;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2em;
+    border: 2px dashed orange;
+    background-color: var(--clr-primary-white);
+}
+
+.outer-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+
+/*form{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    margin: 1em 2em;*/
+/*    background-color: var(--clr-primary-white);*/
+/*}*/
+
+/* HEADER */
+
+
+/* MAIN */
+
+h1 {
+    color: var(--clr-primary-dark-green);
+    font-family: var(--ff-primary-header);
+    font-weight: 700;
+    text-align: center;
+    padding: 2em;
+}
+
+
+/* DETAILPAGE*/
+
+.detail-page {
+    margin: 3em;
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+
+}

@@ -1,0 +1,126 @@
+
+/*// individual item*/
+.task-item {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid var(--clr-primary-light-green);
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2em;
+    border-radius: 50px;
+    width: 100%;
+    margin: 1em 0;
+}
+
+.task-left-side-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1em;
+    width: 400px;
+}
+
+.task-left-side-container label {
+    font-size: 0.6em;
+    margin: 1em;
+}
+
+.task-right-side-container {
+    display: flex;
+    flex-direction: row;
+    gap:1em;
+    align-items: center;
+}
+
+
+.task-priority {
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    max-width: 5em;
+    border-radius: 30px;
+}
+
+.task-priority p {
+    padding: 0.2rem 0.5rem;
+    margin: 0;
+    width: 150px;
+}
+
+/* trash button*/
+
+.trash-btn {
+    height: 30px;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.trash-btn:hover{
+    background-color: var(--clr-primary-light-green);
+}
+.trash-btn img {
+    height: 15px;
+}
+
+/*toggler*/
+
+.toggler-wrapper {
+    display: block;
+    width: 45px;
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+}
+
+.toggler-wrapper input[type="checkbox"] {
+    display: none;
+}
+
+.toggler-wrapper input[type="checkbox"]:checked + .toggler-slider {
+    background-color: white;
+}
+
+.toggler-wrapper .toggler-slider {
+    background-color: white;
+    position: absolute;
+    border-radius: 100px;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+.toggler-wrapper .toggler-knob {
+    position: absolute;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+.toggler-wrapper.style-8 input[type="checkbox"]:checked + .toggler-slider {
+    background-color: white;
+}
+
+.toggler-wrapper.style-8 input[type="checkbox"]:checked + .toggler-slider .toggler-knob {
+    left: calc(100% - 19px - 3px);
+    background: conic-gradient(#BCBD8B, #717744);
+    transform: rotate(360deg);
+}
+
+.toggler-wrapper.style-8 .toggler-slider {
+    background-color: white;
+}
+
+.toggler-wrapper.style-8 .toggler-knob {
+    width: calc(25px - 6px);
+    height: calc(25px - 6px);
+    border-radius: 50%;
+    left: 3px;
+    top: 3px;
+    background: conic-gradient(#EB9486, #E57A44);
+}
