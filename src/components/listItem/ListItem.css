@@ -1,5 +1,14 @@
-
 /*// individual item*/
+
+.completed-task{
+    text-decoration: line-through;
+    color: var(--clr-primary-medium-green);
+}
+
+.uncompleted-task{
+    color: var(--clr-primary-dark-green)
+}
+
 .task-item {
     display: flex;
     flex-direction: row;
@@ -10,6 +19,7 @@
     border-radius: 50px;
     width: 100%;
     margin: 1em 0;
+    color: var(--clr-primary-dark-green)
 }
 
 .task-left-side-container {
@@ -29,41 +39,46 @@
 .task-right-side-container {
     display: flex;
     flex-direction: row;
-    gap:1em;
+    gap: 1em;
     align-items: center;
+
 }
 
 
 .task-priority {
     text-transform: uppercase;
     padding: 0.2rem 0.5rem;
-    max-width: 5em;
+    width: 5em;
     border-radius: 30px;
+    height: 40px;
+    background: no-repeat center;
 }
 
-.task-priority p {
-    padding: 0.2rem 0.5rem;
-    margin: 0;
-    width: 150px;
-}
+
 
 /* trash button*/
 
 .trash-btn {
-    height: 30px;
+}
+
+.list-item-btn {
+    height: 40px;
     aspect-ratio: 1/1;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     border-radius: 30px;
+    background-color: transparent;
+
 }
 
-.trash-btn:hover{
+.list-item-btn:hover {
     background-color: var(--clr-primary-light-green);
 }
-.trash-btn img {
-    height: 15px;
+
+.list-item-btn img {
+    height: 20px;
 }
 
 /*toggler*/

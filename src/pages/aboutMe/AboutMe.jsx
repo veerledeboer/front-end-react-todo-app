@@ -11,7 +11,7 @@ function AboutMe() {
                 <h1>hi, i am Veerle!</h1>
                 </section>
             </header>
-            <main className="outer-container">
+            <main className="outer-container about-me-page">
                     <section className=" inner-container">
                         <section className="bio-info-wrapper">
                         <section className="bio-info-section">

@@ -5,6 +5,7 @@ import {v4 as uuidv4} from "uuid";
 import {useEffect, useState} from "react";
 import "./Home.css"
 import axios from "axios";
+import SetPriority from "../../components/priority/SetPriority.jsx";
 
 async function fetchData() {
     try {
@@ -17,30 +18,38 @@ async function fetchData() {
     }
 }
 
-async function removeData(id){
-    try{
+async function removeData(id) {
+    try {
         const result = await
             axios.delete(`http://localhost:3000/todos/${id}`)
         return result.data
-    } catch(e){
+    } catch (e) {
         console.error(e)
-        return[];
+        return [];
     }
 }
 
-async function addData(){
-    try{
+async function addData(newTaskData) {
+    try {
         const result = await
-            axios.post('http://localhost:3000/todos',newTaskData);
+            axios.post('http://localhost:3000/todos', newTaskData);
         return result.data
-    } catch(e){
+    } catch (e) {
         console.error(e)
         return []
     }
 }
 
-function Home() {
+async function editData(editedTaskData){
+    try{
+        const result = await
+            axios.put('http://localhost:3000/todos', editedTaskData)
+    } catch(e){
+        console.error(e)
+    }
+}
 
+function Home() {
 
     const [todos, setTodos] = useState([]);
     const [inputValue, setInputValue] = useState('');
@@ -68,12 +77,13 @@ function Home() {
             priority,
             description,
         };
+        console.log('newTaskData:', newTaskData); // Debugging line
 
         // Call the addData function to send the new task data to the backend
         addData(newTaskData)
             .then(() => {
                 // Update the local state with the new task
-                setTodos([...todos, newTaskData]);
+                setTodos(prevTodos => [...prevTodos, newTaskData]);
 
                 // Clear input fields after submitting
                 setInputValue('');
@@ -87,12 +97,7 @@ function Home() {
             });
     }
 
-    // function deleteTask(id) {
-    //     setTodos(todos.filter((todo) => todo.id !== id));
-    // }
-    // old deletetask function
-
-    function deleteTask(id) {
+    function deleteTodo(id) {
         // Call the removeData function to delete the task on the backend
         removeData(id).then(() => {
             // Update the todos state to reflect the removal of the task
@@ -101,6 +106,9 @@ function Home() {
         });
     }
 
+    function editTodo(){
+
+    }
     function handleCheckbox(idParam) {
         setTodos(todos.map((todo) => todo.id === idParam ? {...todo, completed: !todo.completed} : todo));
     }
@@ -146,20 +154,25 @@ function Home() {
                                            onChange={(e) => setInputValue(e.target.value)}/>
                                 </label>
                                 <label htmlFor="descriptionField">
-                                    <textarea name="task-description" value={description} className="task-input-field-description" id="descriptionField" cols="20" rows="10" placeholder="Taak beschrijven" onChange={(e)=>setDescription(e.target.value)}>{description}</textarea>
+                                    <textarea name="task-description" value={description}
+                                              className="task-input-field-description" id="descriptionField" cols="20"
+                                              rows="10" placeholder="Taak beschrijven"
+                                              onChange={(e) => setDescription(e.target.value)}>{description}</textarea>
                                 </label>
                             </section>
                             <section className="add-task-section-button-and-prio-wrapper">
-                                <label htmlFor="selectField" className="custom-select">
-                                    <select name="select" id="selectField" className="select-container"
-                                            onChange={(e) => setPriorityLevel(parseInt(e.target.value))}>
-                                        <option value="">Priority</option>
-                                        <option value={1}>High</option>
-                                        <option value={2}>Medium</option>
-                                        <option value={3}>Low</option>
-                                    </select>
-                                    <span className="custom-arrow"></span>
-                                </label>
+                                <SetPriority setPriorityLevel={setPriorityLevel}/>
+
+                                {/*<label htmlFor="selectField" className="custom-select">*/}
+                                {/*    <select name="select" id="selectField" className="select-container"*/}
+                                {/*            onChange={(e) => setPriorityLevel(parseInt(e.target.value))}>*/}
+                                {/*        <option value="">Priority</option>*/}
+                                {/*        <option value={1}>High</option>*/}
+                                {/*        <option value={2}>Medium</option>*/}
+                                {/*        <option value={3}>Low</option>*/}
+                                {/*    </select>*/}
+                                {/*    <span className="custom-arrow"></span>*/}
+                                {/*</label>*/}
                                 <label htmlFor="date-input">
                                     <input type="date" name="deadline"/>
                                     {/*    wil ik er een date component bij doen?*/}
@@ -170,7 +183,7 @@ function Home() {
                         <ul>
                             {todos.map((todo) => (
                                 <TodoItem key={todo.id} todo={todo} handleCheckbox={handleCheckbox}
-                                          deleteTask={()=> deleteTask(todo.id)}/>
+                                          deleteTask={() => deleteTodo(todo.id)}/>
                             ))}
                         </ul>
 

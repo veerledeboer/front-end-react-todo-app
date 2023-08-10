@@ -35,15 +35,15 @@ function App() {
     return (
         <>
             <Navigation/>
-            <Home/>
-            <AboutMe/>
-            <DetailPage/>
-           {/*<Routes>*/}
-
-           {/*    <Route path="/" element={<Home/>}/>*/}
-           {/*    <Route path="/about-me" element={<AboutMe/>}/>*/}
-           {/*    <Route path="/task/:id" element={<DetailPage/>}/>*/}
-           {/*</Routes>*/}
+            {/* <Home/>*/}
+            {/* /!*<AboutMe/>*!/*/}
+            {/* <DetailPage/>*/}
+            {/*/!*<Routes>*!/*/}
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/about-me" element={<AboutMe/>}/>
+                <Route path="/task/:id" element={<DetailPage/>}/>
+            </Routes>
             <Footer/>
         </>
     )

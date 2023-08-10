@@ -3,6 +3,7 @@ import saveIcon from "../../assets/dark/floppy-disk-dark.svg";
 import editIcon from "../../assets/dark/pencil-dark.svg";
 import {useState} from "react";
 import "./DetailPage.css"
+import SetPriority from "../../components/priority/SetPriority.jsx";
 
 
 function DetailPage() {
@@ -45,40 +46,50 @@ function DetailPage() {
                     saveEditmode()
                 }}>
                     <div className="single-detail">
-                        <label htmlFor="1"> Task
+                        <label htmlFor="1" className="detail-page-input-label"> Task
                             <input key="1" type="text" value={inputValue} placeholder="kijk mij" className="detail-page-input-field" readOnly={!editMode}
                                    onChange={(e) => setInputValue(e.target.value)}/>
                         </label>
                     </div>
                     <div className="single-detail">
-                        <label htmlFor="2"> Description
-                            <textarea name="" id="2" cols="30" rows="10" value={description} className="detail-page-input-field" readOnly={!editMode}
+                        <label htmlFor="2" className="detail-page-input-label"> Description
+                            <textarea name="" id="2" cols="40" rows="10" value={description} className="detail-page-input-field" readOnly={!editMode}
                                       onChange={(e) => setDescription(e.target.value)}></textarea>
                         </label>
                     </div>
                     <div className="single-detail">
-                        <label htmlFor="3"> Priority
-                            <input key="3" type="text" value={priority} className="detail-page-input-field" placeholder="kijk mij" readOnly={!editMode}
-                                   onChange={(e) => setPriorityLevel(e.target.value)}/>
+                        <label htmlFor="3" className="detail-page-input-label"> Priority
+
+                            <select name="select" id="selectField" className="select-container"
+                                        onChange={(e) => setPriorityLevel(parseInt(e.target.value))} readOnly={!editMode}>
+                                    <option value="">Priority</option>
+                                    <option value={1}>High</option>
+                                    <option value={2}>Medium</option>
+                                    <option value={3}>Low</option>
+                                </select>
+                                <span className="custom-arrow"></span>
+
+                            {/*<input key="3" type="text" value={priority} className="detail-page-input-field" placeholder="kijk mij" readOnly={!editMode}*/}
+                            {/*       onChange={(e) => setPriorityLevel(e.target.value)}/>*/}
                         </label>
                     </div>
-                </form>
-                <div>
                     {editMode ?
                         (
-                            <div>
-                                <button type="button" onClick={() => {
+                            <div className="detail-page-edit-mode">
+                                <button type="button" className="detail-page-btn" onClick={() => {
                                     cancelEditMode()
                                 }}><img src={cancelIconDark} alt="cancel icon"/>
                                 </button>
-                                <button type="submit"><img src={saveIcon} alt="save icon"/>
+                                <button type="submit" className="detail-page-btn" onClick={()=> saveEditmode()}><img src={saveIcon} className="svg-icon" alt="save icon"/>
                                 </button>
                             </div>
                         ) :
-                        (<button type="button" onClick={() => {
+                        (<button type="button" className="detail-page-btn" onClick={() => {
                             openEditMode()
                         }}><img src={editIcon} alt="edit icon"/></button>)
                     }
+                </form>
+                <div>
                 </div>
                 </section>
             </main>

@@ -21,17 +21,42 @@
     border: 1px solid var(--clr-primary-light-green);
     outline: var(--clr-primary-light-green);
     font-family: var(--ff-primary-text);
-    width: 250px;
+    width: 300px;
     padding: 1em;
-    margin: 2em;
+    margin: 2em 0;
+    resize: none;
 }
 
 .detail-page-input-field:hover{
     cursor: inherit;
+
 }
 
 .single-detail{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.detail-page-input-label{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.detail-page-edit-mode{
+    display: flex;
+    flex-direction: row;
+}
+
+.detail-page-btn{
+    width: 3rem;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background-color: var(--clr-primary-light-green);
 }
