@@ -6,7 +6,7 @@
     cursor: pointer;
     padding: 0.5em;
     place-items: center;
-    font-size: 16px;
+    font-size: 14px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -14,8 +14,8 @@
 }
 
 button:hover {
-    background-color: var(--clr-primary-medium-green);
-    color: vaR(--clr-primary-light-green);
+    color: var(--clr-primary-light-green);
+    background-color: var(--clr-primary-dark-green);
 }
 
 .btn img {

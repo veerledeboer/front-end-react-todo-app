@@ -21,7 +21,8 @@
     border: 1px solid var(--clr-primary-light-green);
     outline: var(--clr-primary-light-green);
     font-family: var(--ff-primary-text);
-    width: 300px;
+    flex-basis: auto;
+    max-width: 600px;
     padding: 1em;
     margin: 2em 0;
     resize: none;

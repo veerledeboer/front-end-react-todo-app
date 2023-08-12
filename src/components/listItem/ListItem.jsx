@@ -1,19 +1,17 @@
 import trash from "../../assets/trash.svg";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import editIcon from "../../assets/dark/pencil-dark.svg";
-// import redFlag from "../../assets/flag-red.svg"
-// import blueFlag from "../../assets/flag-blue.svg"
-// import greenFlag from "../../assets/flag-green.svg"
 import Priority from "../priority/Priority.jsx";
 
-export default function TodoItem({todo, handleCheckbox, deleteTask}) {
-    // const priorityStyle = getPriorityColor(todo.priority);
+
+export default function TodoItem({todo, status, handleCheckbox, deleteTask, className}) {
+    const navigate = useNavigate()
 
     return (
         <li key={todo.id} className="task-item">
-            <section className="task-left-side-container">
-                <label htmlFor={`complete-task-${todo.id}`} className="toggler-wrapper style-8">
-                    Finished?
+            <section className={`task-left-side-container ${className}`}>
+                <label htmlFor={`complete-task-${todo.id}`}
+                       className={`toggler-wrapper style-8 ${status ? 'completed' : 'pending'}`}>
                     <input
                         type="checkbox"
                         id={`complete-task-${todo.id}`}
@@ -27,16 +25,15 @@ export default function TodoItem({todo, handleCheckbox, deleteTask}) {
                 <h2 className={todo.completed ? "completed-task" : "uncompleted-task"}>{todo.title}</h2>
             </section>
             <section className="task-right-side-container">
-                <button type="button" className="edit-button list-item-btn">
-                    <Link to="/task/:id">
-                        <img src={editIcon} alt="edit this todo"/>
-                    </Link>
+                <button type="button"
+                        className="edit-button list-item-btn"
+                        onClick={() => navigate(`/task/${todo.id}`)}>
+                    <img src={editIcon} alt="edit this todo"/>
                 </button>
                 <Priority todo={todo}/>
-                {/*<div style={priorityStyle} className="task-priority">*/}
-                {/*    /!*<p>PRIO {todo.priority}</p>*!/*/}
-                {/*</div>*/}
-                <button type="button" onClick={() => deleteTask(todo.id)} className="list-item-btn trash-btn">
+                <button type="button"
+                        onClick={() => deleteTask(todo.id)}
+                        className="list-item-btn trash-btn">
                     <img src={trash} alt="trash bin"/>
                 </button>
             </section>

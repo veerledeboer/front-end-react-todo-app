@@ -14,7 +14,6 @@
     justify-content: center;
     align-items: center;
     padding: 2em;
-    border: 1px solid black;
 }
 
 .bio-info-section h2{
@@ -29,7 +28,5 @@
     justify-content: space-evenly;
     text-wrap: balance;
     padding: 2rem;
-    border: 1px solid red;
-
 }
 

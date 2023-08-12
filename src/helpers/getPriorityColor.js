@@ -11,6 +11,6 @@ export default function getPriorityColor(priority) {
         case 3:
             return {backgroundImage: `url(${greenFlag})`};
         default:
-            return {backgroundColor: 'white', color: 'black'};
+            return {backgroundColor: '#EFF1ED', color: 'black'};
     }
 }

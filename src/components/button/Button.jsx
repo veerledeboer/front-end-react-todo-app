@@ -3,7 +3,7 @@ import arrowDown from "../../assets/arrow-down.svg";
 import "./Button.css"
 
 
-function Button({ onClick, sorted, btnClass, children }) {
+function Button({ onClick, sorted, btnClass, children, buttonTitle }) {
     return (
         <button type="button" className={btnClass} onClick={onClick}>
             {children}
@@ -12,7 +12,7 @@ function Button({ onClick, sorted, btnClass, children }) {
             ) : (
                 <img src={arrowDown} alt="Low to High" />
             )}
-            Sort on Prio ({sorted ? 'Low to High' : 'High to Low'})
+            {buttonTitle}
         </button>
     );
 }

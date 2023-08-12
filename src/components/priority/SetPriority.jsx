@@ -1,7 +1,7 @@
-function SetPriority({setPriorityLevel}) {
+function SetPriority({setPriorityLevel, priority}) {
     return (
         <label htmlFor="selectField" className="custom-select">
-            <select name="select" id="selectField" className="select-container"
+            <select name="select" id="selectField" className="select-container" value={priority}
                     onChange={(e) => setPriorityLevel(parseInt(e.target.value))}>
                 <option value="">Priority</option>
                 <option value={1}>High</option>

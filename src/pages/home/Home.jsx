@@ -7,110 +7,82 @@ import "./Home.css"
 import axios from "axios";
 import SetPriority from "../../components/priority/SetPriority.jsx";
 
-async function fetchData() {
-    try {
-        const result = await
-            axios.get('http://localhost:3000/todos');
-        return result.data
-    } catch (e) {
-        console.error(e)
-        return [];
-    }
-}
-
-async function removeData(id) {
-    try {
-        const result = await
-            axios.delete(`http://localhost:3000/todos/${id}`)
-        return result.data
-    } catch (e) {
-        console.error(e)
-        return [];
-    }
-}
-
-async function addData(newTaskData) {
-    try {
-        const result = await
-            axios.post('http://localhost:3000/todos', newTaskData);
-        return result.data
-    } catch (e) {
-        console.error(e)
-        return []
-    }
-}
-
-async function editData(editedTaskData){
-    try{
-        const result = await
-            axios.put('http://localhost:3000/todos', editedTaskData)
-    } catch(e){
-        console.error(e)
-    }
-}
-
 function Home() {
 
     const [todos, setTodos] = useState([]);
     const [inputValue, setInputValue] = useState('');
-    const [priority, setPriorityLevel] = useState(3);
+    const [priority, setPriorityLevel] = useState('');
     const [completed, toggleCompleted] = useState(false);
     const [sorted, toggleSorted] = useState(false);
+    const [sortedCompletion, toggleSortedCompletion] = useState(false);
     const [description, setDescription] = useState('');
+    const [error, setError] = useState('')
+    const [searchValue, setSearchValue] = useState('')
+    const [results, setResults] = useState([])
 
     useEffect(() => {
-        async function fetchTodos() {
-            const data = await fetchData();
-            setTodos(data);
+        async function fetchData() {
+            try {
+                const result = await
+                    axios.get('http://localhost:3000/todos');
+                setTodos(result.data);
+            } catch (e) {
+                setError(e)
+                return [];
+            }
         }
-        fetchTodos();
+
+        fetchData();
     }, []);
 
-
-    function addTodo(e) {
-        e.preventDefault();
-
-        const newTaskData = {
-            id: uuidv4(),
-            title: inputValue,
-            completed,
-            priority,
-            description,
-        };
-        console.log('newTaskData:', newTaskData); // Debugging line
-
-        // Call the addData function to send the new task data to the backend
-        addData(newTaskData)
-            .then(() => {
-                // Update the local state with the new task
-                setTodos(prevTodos => [...prevTodos, newTaskData]);
-
-                // Clear input fields after submitting
-                setInputValue('');
-                setPriorityLevel(3);
-                toggleCompleted(false);
-                toggleSorted(false);
-                setDescription('');
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    }
-
-    function deleteTodo(id) {
-        // Call the removeData function to delete the task on the backend
-        removeData(id).then(() => {
-            // Update the todos state to reflect the removal of the task
+    async function removeData(id) {
+        try {
+            const result = await
+                axios.delete(`http://localhost:3000/todos/${id}`)
             setTodos(todos.filter((todo) => todo.id !== id));
-            // setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
-        });
+        } catch (e) {
+            console.error(e)
+        }
     }
 
-    function editTodo(){
+    async function addData(e) {
+        e.preventDefault();
+        try {
+            const result = await
+                axios.post('http://localhost:3000/todos', {
+                    id: uuidv4(),
+                    title: inputValue,
+                    completed: completed,
+                    priority: priority,
+                    description: description,
+                });
+            setTodos([...todos, result.data]);
 
+            // Clear input fields after submitting
+            setInputValue('');
+            setPriorityLevel('');
+            toggleCompleted(false);
+            toggleSorted(false);
+            setDescription('');
+            // return result.data
+        } catch (e) {
+            console.error(e)
+            return []
+        }
     }
-    function handleCheckbox(idParam) {
-        setTodos(todos.map((todo) => todo.id === idParam ? {...todo, completed: !todo.completed} : todo));
+
+    async function handleCheckbox(idParam) {
+        const updatedTodos = todos.map((todo) => todo.id === idParam ? {...todo, completed: !todo.completed} : todo
+        );
+        setTodos(updatedTodos);
+
+        const updatedTodo = updatedTodos.find(todo => todo.id === idParam);
+
+        try {
+            await axios.put(`http://localhost:3000/todos/${idParam}`, updatedTodo);
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     function sortOnHighPriority() {
@@ -127,30 +99,47 @@ function Home() {
         sorted ? sortOnHighPriority() : sortOnLowPriority();
     }
 
+    function sortOnCompleted (){
+        todos.sort((a, b) => b.completed - a.completed);
+        toggleSortedCompletion(false);
+    }
+
+    function sortOnNotCompleted () {
+        todos.sort((a, b) => a.completed - b.completed);
+        toggleSortedCompletion(true);
+    }
+    function sortTodosOnCompletion () {
+        console.log(todos)
+        sortedCompletion ? sortOnCompleted() : sortOnNotCompleted()
+    }
+
+    const handleSearchChange = (value) => {
+        setSearchValue(value);
+        if (value.trim() === '') {
+            setResults([])
+        } else {
+            filterTodos(value);
+        }
+    }
+
+    const filterTodos = (value) => {
+        const filteredTodos = todos.filter((todo) => todo.title.toLowerCase().includes(value.toLowerCase())
+        );
+        setResults(filteredTodos);
+    }
+
     return (
         <>
-            <header className="outer-container">
-                <section className="filter-section inner-container">
-                    <nav>
-                        <Button btnClass="btn prio-btn" onClick={() => sortTodos()} sorted={sorted}/>
-                        <label htmlFor="searchBar" className="search-tasks-container">
-                            <input type="search" id="searchBar" className="search-field" placeholder="search for task"/>
-                            <button type="submit" className="search-button">
-                                <img src={searchIcon} alt="magnifying glass"/>
-                            </button>
-                        </label>
-                    </nav>
-                </section>
-            </header>
             <main className="outer-container">
                 <section className="form-section inner-container">
                     <h1>Todo App</h1>
-                    <form onSubmit={addTodo}>
+                    <form onSubmit={addData}>
+                        {error && <p>{error}</p>}
                         <section className="add-task-section">
                             <section className="add-task-section-text-wrapper">
                                 <label htmlFor="textField">
                                     <input type="text" className="task-input-field" id="textField" value={inputValue}
-                                           placeholder="Welke taak wil je toevoegen?"
+                                           placeholder="Welke taak wil je toevoegen?" maxLength="30"
                                            onChange={(e) => setInputValue(e.target.value)}/>
                                 </label>
                                 <label htmlFor="descriptionField">
@@ -161,30 +150,42 @@ function Home() {
                                 </label>
                             </section>
                             <section className="add-task-section-button-and-prio-wrapper">
-                                <SetPriority setPriorityLevel={setPriorityLevel}/>
-
-                                {/*<label htmlFor="selectField" className="custom-select">*/}
-                                {/*    <select name="select" id="selectField" className="select-container"*/}
-                                {/*            onChange={(e) => setPriorityLevel(parseInt(e.target.value))}>*/}
-                                {/*        <option value="">Priority</option>*/}
-                                {/*        <option value={1}>High</option>*/}
-                                {/*        <option value={2}>Medium</option>*/}
-                                {/*        <option value={3}>Low</option>*/}
-                                {/*    </select>*/}
-                                {/*    <span className="custom-arrow"></span>*/}
-                                {/*</label>*/}
+                                <SetPriority setPriorityLevel={setPriorityLevel} priority={priority}/>
                                 <label htmlFor="date-input">
-                                    <input type="date" name="deadline"/>
+                                    <input type="date" name="deadline" id="date-input"/>
                                     {/*    wil ik er een date component bij doen?*/}
                                 </label>
                                 <button type="submit" className="btn btn-submit">add to do</button>
                             </section>
                         </section>
+                        <section className="filter-section inner-container">
+                            <nav>
+                                <Button btnClass="btn prio-btn" onClick={() => sortTodos()} sorted={sorted} buttonTitle={`Sort on Prio (${sorted ? 'Low to High' : 'High to Low'}`}/>
+                                <Button btnClass="btn completed-btn" onClick={()=>sortTodosOnCompletion()} sorted={sorted} buttonTitle={`Sort on Completion`}/>
+                                <label className="search-tasks-container">
+                                    <input className="search-field"
+                                           placeholder="Search for task..."
+                                           value={searchValue}
+                                           onChange={(e) => handleSearchChange(e.target.value)}
+                                           size="30"/>
+
+                                    <button type="button" className="search-button">
+                                        <img className="search-icon" src={searchIcon} alt="magnifying glass"/>
+                                    </button>
+                                </label>
+                            </nav>
+                        </section>
                         <ul>
-                            {todos.map((todo) => (
+                            {results.length > 0 ? results.map((todo) => (
                                 <TodoItem key={todo.id} todo={todo} handleCheckbox={handleCheckbox}
-                                          deleteTask={() => deleteTodo(todo.id)}/>
-                            ))}
+                                          deleteTask={() => removeData(todo.id)} status={todo.completed}/>
+                            ))
+                            : todos.map((todo) => (
+                                <TodoItem key={todo.id} todo={todo} handleCheckbox={handleCheckbox}
+                                          deleteTask={() => removeData(todo.id)} status={todo.completed}/>
+                            ))
+                        }
+
                         </ul>
 
                     </form>

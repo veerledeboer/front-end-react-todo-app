@@ -5,13 +5,11 @@
     flex-direction: row;
     justify-content: space-evenly;
     gap: 1em;
-    /*background-color: var(--clr-primary-white);*/
-    padding: 2em;
+    padding: 3em 2em 1em;
     border-radius: 50px 50px 0 0 ;
     margin-top: 2rem;
     font-size: 1.2em;
 }
-
 
 nav {
     width: 100%;
@@ -20,16 +18,21 @@ nav {
     height: 60px;
 }
 
+.active-link{
+    border-bottom: 1px solid var(--clr-primary-medium-green);
+}
+
+.default-link{
+    border-bottom: 1px solid transparent;
+}
+
+.default-link:hover, .active-link:hover{
+    color: var(--clr-primary-dark-green);
+}
+
 nav a,
 nav a:visited {
     text-decoration: none;
     color: #717744;
 }
 
-.active-link{
-    border-bottom: 1px solid #373D20;
-}
-
-.default-link{
-    border-bottom: 1px solid transparent;
-}

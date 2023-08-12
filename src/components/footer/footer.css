@@ -1,4 +1,17 @@
-.footer-section {
+footer .footer-section {
     height: 4rem;
     border-radius: 0 0 20px 20px;
+    margin-bottom: 2rem;
+    padding: 3em;
+    justify-content: center;
+    flex-direction: row;
+    gap:2em;
+}
+
+.footer-section h4{
+    align-items: center;
+}
+
+.footer-section img{
+    height: 30px;
 }

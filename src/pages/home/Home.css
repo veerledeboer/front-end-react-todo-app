@@ -26,14 +26,12 @@
     object-fit: cover;
 }
 
-.search-button {
+.search-button, .search-button:hover {
     background: transparent;
     border: none;
     outline: none;
     margin-left: -40px;
 }
-
-
 
 /*--------------------- Add task section -----------------*/
 .add-task-section {
@@ -109,6 +107,7 @@ input::placeholder, textarea::placeholder{
     flex-direction: row;
     width: 100%;
     justify-content: space-evenly;
+    padding: 1em 0 0;
 }
 
 /*// remove textarea expand icon */
@@ -117,9 +116,12 @@ input::placeholder, textarea::placeholder{
 .filter-section nav{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    margin: 1rem;
+    justify-content: space-between;
+    margin: 2rem 0 1rem;
+    padding: 0;
+    gap: 1em;
 }
+
 
 /* input field*/
 

@@ -32,7 +32,6 @@
     flex-direction: column;
     align-items: center;
     padding: 0 2em;
-    border: 2px dashed orange;
     background-color: var(--clr-primary-white);
 }
 
@@ -80,9 +79,12 @@ h1 {
     font-family: var(--ff-primary-header);
     font-weight: 700;
     text-align: center;
-    padding: 2em;
+    padding: 1em 0 .5em;
 }
 
+h2{
+    overflow: hidden;
+}
 
 /* DETAILPAGE*/
 

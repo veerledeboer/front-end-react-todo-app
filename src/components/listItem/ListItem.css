@@ -3,10 +3,12 @@
 .completed-task{
     text-decoration: line-through;
     color: var(--clr-primary-medium-green);
+    font-size: 1em;
 }
 
 .uncompleted-task{
-    color: var(--clr-primary-dark-green)
+    color: var(--clr-primary-dark-green);
+    font-size: 1em;
 }
 
 .task-item {
@@ -15,7 +17,7 @@
     border: 1px solid var(--clr-primary-light-green);
     justify-content: space-evenly;
     align-items: center;
-    padding: 2em;
+    padding: 1.2em;
     border-radius: 50px;
     width: 100%;
     margin: 1em 0;
@@ -103,7 +105,7 @@
     background-color: white;
     position: absolute;
     border-radius: 100px;
-    top: 20px;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;

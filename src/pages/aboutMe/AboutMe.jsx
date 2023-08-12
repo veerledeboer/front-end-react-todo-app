@@ -1,14 +1,32 @@
 import profilePicture from "../../assets/profile-photo.jpg"
 import "./AboutMe.css"
 import "../../styles/styles.css"
-import capybara from "../../assets/capybara-water.gif"
-
+import profilePicOption2 from "../../assets/capybara-and-friends.jpeg"
+import profilePicOption3 from "../../assets/capybara-and-many-friends.jpeg"
+import axios from "axios";
 function AboutMe() {
+    const [bio, setBio] = ([])
+    const [name, setName] = ('')
+    const [header, setHeader] = ('')
+    const [description, setDescription] = ('')
+
+    // async function fetchAboutData(){
+    //     try{
+    //         const result = await
+    //             axios.get("http://localhost:3000/bio")
+    //         setBio(result.data)
+    //         setName(result.data.name);
+    //         setHeader(result.data.header);
+    //         setDescription(result.data.description);
+    //     } catch(e){
+    //         console.error(e)
+    //     }
+    // }
     return (
         <>
             <header className="outer-container">
                 <section className="inner-container">
-                <h1>hi, i am Veerle!</h1>
+                <h1>hi, i am Veerle</h1>
                 </section>
             </header>
             <main className="outer-container about-me-page">
